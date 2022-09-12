@@ -10,7 +10,7 @@ describe('1 - Teste a função fetchProducts', () => {
   });
   it('Testa se o retorno da função é uma estrutura de dados correta', async () => expect (await fetchProducts('computador'))
     .toEqual(computadorSearch));
-  it('Testa se o retorno da função é uma estrutura de dados correta', async () => {
+  it('Testa se ao chamar a função sem argumento, retorna um erro', async () => {
     try {
       await fetchProducts();
     } catch (error) {
