@@ -72,4 +72,8 @@ const createCartItemElement = ({ id, title, price }) => {
   return li;
 };
 
+function asda(sadsdasparams) {
+  if()
+}
+
 window.onload = () => { };
