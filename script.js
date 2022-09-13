@@ -68,7 +68,7 @@ const createCartItemElement = ({ id, title, price }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
-  li.addEventListener('click', cartItemClickListener);
+  // li.addEventListener('click', cartItemClickListener);
   return li;
 };
 
@@ -82,6 +82,20 @@ const createProductList = async () => {
   });
 };
 
+const createCarList = async () => {
+  const getCart = document.querySelector('.cart__items');
+  await createProductList();
+  const getButtons = document.querySelectorAll('.item__add');
+  getButtons.forEach((button) => {
+    button.addEventListener('click', async (event) => {
+      const getId = event.target.parentNode.firstChild.innerText;
+      const callFetch = await fetchItem(getId);
+      const getItem = createCartItemElement(callFetch);
+      getCart.appendChild(getItem);
+    });
+  });
+};
+
 window.onload = () => { 
-  createProductList();
+  createCarList();
 };
