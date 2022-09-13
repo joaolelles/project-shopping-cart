@@ -89,8 +89,8 @@ const createCarList = async () => {
   getButtons.forEach((button) => {
     button.addEventListener('click', async (event) => {
       const getId = event.target.parentNode.firstChild.innerText;
-      const callFetch = await fetchItem(getId);
-      const getItem = createCartItemElement(callFetch);
+      const getFetch = await fetchItem(getId);
+      const getItem = createCartItemElement(getFetch);
       getCart.appendChild(getItem);
     });
   });
