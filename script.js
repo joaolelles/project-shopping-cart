@@ -68,7 +68,6 @@ const getIdFromProductItem = (product) => product.querySelector('span.id').inner
 const cartItemClickListener = (event) => {
   const removeCart = document.querySelector('.cart__items');
   removeCart.removeChild(event.target);
-  console.log('fdddd');
 };
 
 const createCartItemElement = ({ id, title, price }) => {
