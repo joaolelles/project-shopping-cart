@@ -9,8 +9,8 @@ describe('3 - Teste a função saveCartItems', () => {
     expect (localStorage.setItem).toHaveBeenCalled();
   });
   it('Teste se, a saveCartItems é chamada com os dois parâmetros corretos.', () => {
-    saveCartItems('cartItem')
-    expect (localStorage.setItem).toHaveBeenCalled(cartItem, 'MLB1983286920');
+    saveCartItems('MLB2187832413');
+    expect (localStorage.setItem).toHaveBeenCalledWith('cartItems', 'MLB2187832413');
   });
   it('Teste se, a saveCartItems é chamada.', () => {
     saveCartItems('cartItem')

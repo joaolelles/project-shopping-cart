@@ -8,6 +8,9 @@
  * @param {string} imageSource - URL da imagem.
  * @returns {Element} Elemento de imagem do produto.
  */
+
+const getCart = document.querySelector('.cart__items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -66,8 +69,8 @@ const getIdFromProductItem = (product) => product.querySelector('span.id').inner
  */
 
 const cartItemClickListener = (event) => {
-  const removeCart = document.querySelector('.cart__items');
-  removeCart.removeChild(event.target);
+  getCart.removeChild(event.target);
+  saveCartItems(getCart.innerHTML);
 };
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -89,7 +92,6 @@ const createProductList = async () => {
 };
 
 const createCarList = async () => {
-  const getCart = document.querySelector('.cart__items');
   await createProductList();
   const getButtons = document.querySelectorAll('.item__add');
   getButtons.forEach((button) => {
@@ -98,10 +100,22 @@ const createCarList = async () => {
       const getFetch = await fetchItem(getId);
       const getItem = createCartItemElement(getFetch);
       getCart.appendChild(getItem);
+      // const favoritesList = document.querySelector('.cart__items');
+      saveCartItems(getCart.innerHTML);
     });
+  });
+};
+
+const getFavoritesFun = () => {
+  const getFavorites = getSavedCartItems();
+  getCart.innerHTML = getFavorites;
+  const allCartItems = document.querySelectorAll('.cart__item');
+  allCartItems.forEach((item) => {
+    item.addEventListener('click', cartItemClickListener);
   });
 };
 
 window.onload = () => { 
   createCarList();
+  getFavoritesFun();
 };
