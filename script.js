@@ -100,7 +100,6 @@ const createCarList = async () => {
       const getFetch = await fetchItem(getId);
       const getItem = createCartItemElement(getFetch);
       getCart.appendChild(getItem);
-      // const favoritesList = document.querySelector('.cart__items');
       saveCartItems(getCart.innerHTML);
     });
   });
@@ -115,7 +114,16 @@ const getFavoritesFun = () => {
   });
 };
 
+const removeBtn = () => {
+  const btn = document.querySelector('.empty-cart');
+  btn.addEventListener('click', () => {
+    getCart.innerHTML = '';
+    saveCartItems('');
+  });
+};
+
 window.onload = () => { 
   createCarList();
   getFavoritesFun();
+  removeBtn();
 };
